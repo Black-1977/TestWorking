@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+// filter1 исключает из списка все рейсы, с вылетом до текущего момента времени
+
 @Service
 public class Filter1 {
 
@@ -17,14 +19,14 @@ public class Filter1 {
         List<Flight> filteredFlights = new ArrayList<Flight>();
         LocalDateTime currentTime = LocalDateTime.now();
         for (Flight flight : flights) {
-            boolean isFilter = false;
+            boolean isFiltered = false;
             List<Segment> segments = flight.getSegments();
             for (Segment segment : segments) {
                 if (segment.getDepartureDate().isBefore(currentTime)) {
-                    isFilter = true; break;
+                    isFiltered = true; break;
                 }
             }
-            if (isFilter) {
+            if (!isFiltered) {
                 filteredFlights.add(flight);
             }
         }

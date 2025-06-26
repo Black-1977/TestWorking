@@ -11,13 +11,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+// filter3 исключает из списка все рейсы, где общее время, проведённое на земле превышает 2 часа (TIMEOFSTAY)
+
 @Service
 public class Filter3 {
     private final long TIMEOFSTAY = 2L;
 
     public List<Flight> filter3(FlightService flightService) {
         List<Flight> flights = flightService.getAllFlights();
-        List<Flight> filteredFlights = new ArrayList<Flight>();
+        List<Flight> filteredFlights = new ArrayList<>();
         for (Flight flight : flights) {
             long hoursSum = 0;
             List<Segment> segments = flight.getSegments();
@@ -31,7 +33,7 @@ public class Filter3 {
                 hoursSum += hours;
                 arrived = segment.getArrivalDate();
             }
-            if (hoursSum >= TIMEOFSTAY) {
+            if (hoursSum < TIMEOFSTAY) {
                 filteredFlights.add(flight);
             }
         }

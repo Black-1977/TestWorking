@@ -44,26 +44,26 @@ public class FlightController {
     public String filter1Flights() {
         Filter1 filter = new Filter1();
         List<Flight> flights = filter.filter1(flightService);
-        System.out.println("Рейсы с датой вылета раньше текущего времени:");
+        System.out.println("Исключены рейсы с вылетом до текущего момента времени: ");
         System.out.println(flights);
-        return "Рейсы с датой вылета раньше текущего времени выведены в консоль";
+        return "Отфильтрованный список рейсов выведен в консоль";
     }
 
     @GetMapping("/filter2")
     public String filter2Flights() {
         Filter2 filter = new Filter2();
         List<Flight> flights = filter.filter2(flightService);
-        System.out.println("Рейсы с датой прилёта раньше даты вылета:");
+        System.out.println("Исключены рейсы с датой прилёта раньше даты вылета:");
         System.out.println(flights);
-        return "Рейсы с датой прилёта раньше даты вылета выведены в консоль";
+        return "Отфильтрованный список рейсов выведен в консоль";
     }
 
     @GetMapping("/filter3")
     public String filter3Flights() {
         Filter3 filter = new Filter3();
         List<Flight> flights = filter.filter3(flightService);
-        System.out.println("Рейсы со временем нахождения на земле более двух часов:");
+        System.out.println("Исключены рейсы со временем нахождения на земле более двух часов:");
         System.out.println(flights);
-        return "Рейсы со временем нахождения на земле более двух часов выведены в консоль";
+        return "Отфильтрованный список рейсов выведен в консоль";
     }
 }
